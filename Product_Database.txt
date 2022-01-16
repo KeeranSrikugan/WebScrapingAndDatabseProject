@@ -1,0 +1,84 @@
+//Name:Keeran Srikugan
+//Date: January 14, 2021
+//About: Below are all the queries used to create the tables for the database
+
+
+//First table is the product table:
+CREATE TABLE "Product"
+(
+  "id" Bigint NOT NULL,
+  "product_name" Character varying NOT NULL,
+  "current_price" Double precision NOT NULL,
+  "rating" Double precision NOT NULL,
+  "link" Character varying NOT NULL
+)
+WITH (
+  autovacuum_enabled=true)
+;
+
+ALTER TABLE "Product" ADD CONSTRAINT "PK_Product" PRIMARY KEY ("id")
+;
+
+
+---------------------------------------------------------------------------
+//Second table is the table for prices:
+CREATE TABLE "Price"
+(
+  "id" Bigint NOT NULL,
+  "price" Double precision NOT NULL,
+  "lowest_price" Double precision NOT NULL,
+  "Date" Date NOT NULL
+)
+WITH (
+  autovacuum_enabled=true)
+;
+
+ALTER TABLE "Price" ADD CONSTRAINT "PK_Price" PRIMARY KEY ("id")
+;
+
+---------------------------------------------------------------------------
+//Third table is the table for the company:
+CREATE TABLE "Company"
+(
+  "id" Bigint NOT NULL,
+  "company_name" Character Varying NOT NULL,
+  "delivery_date" Character VARYING NOT NULL
+)
+WITH (
+  autovacuum_enabled=true)
+;
+
+ALTER TABLE "Company" ADD CONSTRAINT "PK_Company" PRIMARY KEY ("id")
+;
+---------------------------------------------------------------------------
+//fourth table is to connect the product table with the price of the product
+CREATE TABLE "product_prices"
+(
+  "product_id" Bigint NOT NULL,
+  "price_id" Bigint NOT NULL
+)
+WITH (
+  autovacuum_enabled=true)
+;
+
+ALTER TABLE "product_prices" ADD CONSTRAINT "PK_product_prices" PRIMARY KEY ("product_id","price_id")
+;
+
+;
+---------------------------------------------------------------------------
+
+//fith table is to connect the product witht he manufacturer.
+CREATE TABLE "product_manufacturers"
+(
+  "product_id" Bigint NOT NULL,
+  "company_id" Bigint NOT NULL
+)
+WITH (
+  autovacuum_enabled=true)
+;
+
+ALTER TABLE "product_manufacturers" ADD CONSTRAINT "PK_product_manufacturers" PRIMARY KEY ("product_id","company_id")
+;
+
+
+
