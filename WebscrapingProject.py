@@ -31,6 +31,8 @@ def checkNewProduct():
         item = results[0]
 
         #Here I check if the product name in all of the product boxes
+
+        counter = 0
         for i in range (0,len(results)-1):
             currentItem = results[i]
             itemName = currentItem.text
@@ -42,11 +44,28 @@ def checkNewProduct():
                 atag = item.h2.a
                 productURL = 'https://www.amazon.ca' + atag.get('href')
                 print(productURL)
+                productLinkText.insert(tk.END,productURL)
+                label3["text"]= ""
+                checkIfCorrectProduct()
                 break
+            counter = counter + 1
+
+        if(counter >= len(results)-1):
+            label3["text"] = "Incorrect Information"
 
                 
+def checkIfCorrectProduct():
+    button2 = tk.Button(root, text = "Correct Product", command = addToDatabase)
+    button2.place(x = 200, y = 250)
 
-                
+    button3 = tk.Button(root, text = "Incorrect Product", command = incorrectProduct)
+    button3.place(x = 400, y = 250)
+
+def addToDatabase():
+    print("hello")
+
+def incorrectProduct():
+    print("heya")
                 
                 
                 
@@ -57,20 +76,29 @@ def checkNewProduct():
 
 
 
+
 root = tk.Tk()
 root.geometry("700x400")
 root.configure(bg = "#0E0066")
+
 label1 = tk.Label(root, text = "Enter Product Name: ", bg = '#22316C', fg = 'white')
 label1.place(x = 20, y = 10)
 
+label2 = tk.Label(root, text = "Product Webpage: ", bg = '#22316C', fg = 'white')
+label2.place(x = 20, y = 75)
+
+label3 = tk.Label(root, text = "", bg = '#0E0066', fg = '#E154FA')
+label3.place(x = 295, y = 135)
+
 
 button1 = tk.Button(root, text = "Enter New Product", command = checkNewProduct)
-button1.place(x = 300, y = 300)
+button1.place(x = 300, y = 170)
 productText = tk.Text(root, height = 1, width = 20)
 productText.place(x = 200, y = 10)
 
-label2 = tk.Label(root, text ="")
-label2.place(x = 20, y = 50)
+
+productLinkText = tk.Text(root, height = 2, width = 45)
+productLinkText.place(x = 200, y = 75)
 
 
 
