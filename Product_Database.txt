@@ -1,6 +1,6 @@
 //Name:Keeran Srikugan
 //Date: January 14, 2021
-//About: Below are all the queries used to create the tables for the database
+//About: Below are all the queries used to create the tables for the database using pgadmin
 
 
 //First table is the product table:
@@ -26,7 +26,7 @@ CREATE TABLE "Price"
 (
   "id" Bigint NOT NULL,
   "price" Double precision NOT NULL,
-  "lowest_price" Double precision NOT NULL,
+  "lowest_price" Double precision,
   "Date" Date NOT NULL
 )
 WITH (
