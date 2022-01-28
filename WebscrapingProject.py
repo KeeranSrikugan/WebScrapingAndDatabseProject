@@ -6,6 +6,7 @@ import requests
 import tkinter as tk
 import psycopg2
 import pandas as pd
+import re
 
 
 def CreateURL(product):
@@ -92,12 +93,13 @@ def addToDatabase():
     #This is where I get the price of the product
     prices = soup.find_all('div', {'id': 'apex_desktop'})
     price = prices[0].span.span.text
-
-    
     print(price)
 
 
     #This is where I get the manufacturer
+    manufacturer = soup.find_all('div', {'id': 'merchant-info'})
+    manf = (str(manufacturer[0].text).strip())
+    print(manf)
     
     
 
@@ -119,7 +121,6 @@ def addToDatabase():
     label4.place(x = 20, y = 150)
 
     #How to get the seller
-
     databasePassword = tk.Text(root, height = 2, width = 45)
     databasePassword.place(x = 200, y = 150)
 
