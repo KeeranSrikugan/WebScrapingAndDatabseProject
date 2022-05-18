@@ -4,7 +4,7 @@
 
 
 //First table is the product table:
-CREATE TABLE "Product"
+CREATE TABLE "product"
 (
   "id" Bigint NOT NULL,
   "product_name" Character varying NOT NULL,
@@ -22,7 +22,7 @@ ALTER TABLE "Product" ADD CONSTRAINT "PK_Product" PRIMARY KEY ("id")
 
 ---------------------------------------------------------------------------
 //Second table is the table for prices:
-CREATE TABLE "Price"
+CREATE TABLE "price"
 (
   "id" Bigint NOT NULL,
   "price" Double precision NOT NULL,
@@ -38,7 +38,7 @@ ALTER TABLE "Price" ADD CONSTRAINT "PK_Price" PRIMARY KEY ("id")
 
 ---------------------------------------------------------------------------
 //Third table is the table for the company:
-CREATE TABLE "Company"
+CREATE TABLE "company"
 (
   "id" Bigint NOT NULL,
   "company_name" Character Varying NOT NULL,
