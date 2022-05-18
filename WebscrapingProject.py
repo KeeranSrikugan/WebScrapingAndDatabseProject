@@ -8,6 +8,7 @@ import psycopg2
 import pandas as pd
 import re
 
+pgAdminPassword = None
 
 def CreateURL(product):
     url = "https://www.amazon.ca/s?k={}&ref=nb_sb_noss_1"
@@ -79,11 +80,6 @@ def addToDatabase():
     button3.pack_forget()
     button1.pack_forget()
 
-
-    
-    
-    
-
     #Below, I will be collecting all the information needed for the databse
     productLink = productLinkText.get(1.0, "end-1c")
     HEADERS = ({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64)AppleWebKit/537.36 (KHTML, like Gecko)Chrome/74.0.3729.169 Safari/537.36','Accept-Language': 'en-CA, en;q=0.5'})
@@ -100,7 +96,6 @@ def addToDatabase():
     manufacturer = soup.find_all('div', {'id': 'merchant-info'})
     manf = (str(manufacturer[0].text).strip())
     print(manf)
-    
     
 
     #This is where I get the name of the product
@@ -126,14 +121,21 @@ def addToDatabase():
 
     
 
-    
+    #This function is to simply grab the pgadmin name 
+    def setPGAdminPassword():
+        pgAdminPassword = databasePassword.get(1.0,"end-1c")
+        print(pgAdminPassword)
 
-    
-                
-                
-                
+        
+        
+        
 
-#Here is where the UI is created            
+    getPGAdminPassword = tk.Button(root, text = "Set Password", command = setPGAdminPassword)
+    getPGAdminPassword.place(x = 300, y = 220)
+              
+
+#Here is where the UI is created
+
 root = tk.Tk()
 root.geometry("700x400")
 root.configure(bg = "#0E0066")
@@ -151,7 +153,7 @@ label3.place(x = 295, y = 135)
 button1 = tk.Button(root, text = "Enter New Product", command = checkNewProduct)
 button1.place(x = 300, y = 170)
 
-productText = tk.Text(root, height = 1, width = 20)
+productText = tk.Text(root, height = 1, width = 45)
 productText.place(x = 200, y = 10)
 
 
